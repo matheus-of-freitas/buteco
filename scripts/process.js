@@ -1,12 +1,39 @@
 const fs = require("fs");
 const path = require("path");
+const { chromium } = require("playwright");
 
 const DATA_DIR = path.join(__dirname, "..", "data");
 const RAW_FILE = path.join(DATA_DIR, "bars-raw.json");
-const CACHE_FILE = path.join(DATA_DIR, "geocode-cache.json");
+const GEOCODE_CACHE_FILE = path.join(DATA_DIR, "geocode-cache.json");
+const MAPS_CACHE_FILE = path.join(DATA_DIR, "google-maps-cache.json");
 const OUTPUT_FILE = path.join(DATA_DIR, "bars-final.json");
 
 const HOME_ADDRESS = "Rua do Bispo, 295, Rio Comprido, Rio de Janeiro, RJ, Brasil";
+const GOOGLE_MAPS_SEARCH_BASE = "https://www.google.com/maps/search/?api=1&query=";
+const GENERIC_PLACE_TOKENS = new Set([
+  "bar",
+  "boteco",
+  "botequim",
+  "restaurante",
+  "gastrobar",
+  "gastro",
+  "pub",
+  "cafe",
+  "lanchonete",
+  "chopp",
+  "choperia",
+  "de",
+  "do",
+  "da",
+  "das",
+  "dos",
+  "e",
+  "na",
+  "no",
+  "rio",
+  "janeiro",
+  "rj",
+]);
 
 // --- Parsing ---
 
@@ -67,18 +94,28 @@ function parsePageContent(pageContent) {
   };
 }
 
-// --- Geocoding ---
+// --- Cache helpers ---
 
-function loadCache() {
+function loadJsonFile(filePath, fallback = {}) {
   try {
-    return JSON.parse(fs.readFileSync(CACHE_FILE, "utf-8"));
+    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
   } catch {
-    return {};
+    return fallback;
   }
 }
 
-function saveCache(cache) {
-  fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2), "utf-8");
+function saveJsonFile(filePath, data) {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+}
+
+// --- Geocoding ---
+
+function loadGeocodeCache() {
+  return loadJsonFile(GEOCODE_CACHE_FILE, {});
+}
+
+function saveGeocodeCache(cache) {
+  saveJsonFile(GEOCODE_CACHE_FILE, cache);
 }
 
 function cleanAddressForGeocode(address) {
@@ -125,6 +162,210 @@ async function geocodeWithFallback(address, neighborhood) {
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+// --- Google Maps exact links ---
+
+function loadMapsCache() {
+  return loadJsonFile(MAPS_CACHE_FILE, {});
+}
+
+function saveMapsCache(cache) {
+  saveJsonFile(MAPS_CACHE_FILE, cache);
+}
+
+function isExactGoogleMapsUrl(url) {
+  return typeof url === "string" && url.includes("/maps/place/");
+}
+
+function cleanAddressForMapsSearch(address) {
+  return address
+    .replace(/\|/g, ",")
+    .replace(/–/g, "-")
+    .replace(/\s*-\s*RJ\s*$/, ", RJ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buildMapsSearchQuery(bar) {
+  return [bar.name, cleanAddressForMapsSearch(bar.address), bar.complement]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function buildMapsSearchUrl(bar) {
+  return `${GOOGLE_MAPS_SEARCH_BASE}${encodeURIComponent(buildMapsSearchQuery(bar))}`;
+}
+
+function getMapsCacheKey(bar) {
+  return getSlug(bar.comidaDeButecoUrl) || `${bar.name}::${bar.address}`;
+}
+
+function normalizeTextForComparison(str) {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/['’]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function getMeaningfulNameTokens(name) {
+  return normalizeTextForComparison(name)
+    .split(" ")
+    .filter((token) => token.length > 2 && !GENERIC_PLACE_TOKENS.has(token));
+}
+
+function getGoogleMapsPlaceLabel(url) {
+  try {
+    const pathname = new URL(url).pathname;
+    const placeSegment = pathname.split("/place/")[1];
+    if (!placeSegment) return "";
+    return decodeURIComponent(placeSegment.split("/@")[0].replace(/\+/g, " "));
+  } catch {
+    return "";
+  }
+}
+
+function doesGoogleMapsPlaceMatchBar(bar, resolvedUrl) {
+  if (!isExactGoogleMapsUrl(resolvedUrl)) return false;
+
+  const placeLabel = normalizeTextForComparison(getGoogleMapsPlaceLabel(resolvedUrl));
+  const barTokens = getMeaningfulNameTokens(bar.name);
+  if (!placeLabel || !barTokens.length) return false;
+
+  return barTokens.some((token) => placeLabel.includes(token));
+}
+
+async function resolveExactGoogleMapsUrl(page, bar) {
+  const searchUrl = buildMapsSearchUrl(bar);
+
+  await page.goto(searchUrl, {
+    waitUntil: "domcontentloaded",
+    timeout: 60_000,
+  });
+
+  let finalUrl = page.url();
+  for (let attempt = 0; attempt < 16; attempt++) {
+    if (isExactGoogleMapsUrl(finalUrl)) break;
+    await page.waitForTimeout(500);
+    finalUrl = page.url();
+  }
+
+  const exact = doesGoogleMapsPlaceMatchBar(bar, finalUrl);
+
+  return {
+    query: buildMapsSearchQuery(bar),
+    searchUrl,
+    resolvedUrl: exact ? finalUrl : bar.googleMapsUrl,
+    exact,
+  };
+}
+
+async function enrichGoogleMapsUrls(bars) {
+  console.log("\n=== Resolvendo links exatos do Google Maps ===\n");
+
+  const mapsCache = loadMapsCache();
+  let exactResolved = 0;
+  let fallbackKept = 0;
+  let fromCache = 0;
+
+  const unresolvedBars = bars.filter((bar) => !isExactGoogleMapsUrl(bar.googleMapsUrl));
+  if (!unresolvedBars.length) {
+    console.log("Todos os bares ja possuem links exatos do Google Maps");
+    return;
+  }
+
+  const barsToLookup = [];
+  for (const bar of unresolvedBars) {
+    const cacheKey = getMapsCacheKey(bar);
+    const cached = mapsCache[cacheKey];
+
+    if (cached) {
+      if (cached.exact && !doesGoogleMapsPlaceMatchBar(bar, cached.resolvedUrl)) {
+        delete mapsCache[cacheKey];
+        saveMapsCache(mapsCache);
+      } else {
+        bar.googleMapsUrl = cached.resolvedUrl;
+        fromCache++;
+        if (cached.exact) {
+          exactResolved++;
+        } else {
+          fallbackKept++;
+        }
+        continue;
+      }
+    }
+
+    barsToLookup.push(bar);
+  }
+
+  if (!barsToLookup.length) {
+    console.log(`Links exatos: ${exactResolved}/${unresolvedBars.length}`);
+    console.log(`Fallback mantido: ${fallbackKept}`);
+    console.log(`Lidos do cache: ${fromCache}`);
+    return;
+  }
+
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ locale: "pt-BR" });
+  await context.route("**/*", (route) => {
+    const type = route.request().resourceType();
+    if (["image", "media", "font"].includes(type)) {
+      return route.abort();
+    }
+    return route.continue();
+  });
+  const page = await context.newPage();
+
+  try {
+    for (let i = 0; i < barsToLookup.length; i++) {
+      const bar = barsToLookup[i];
+      const cacheKey = getMapsCacheKey(bar);
+
+      console.log(`[${i + 1}/${barsToLookup.length}] ${bar.name}`);
+      try {
+        const result = await resolveExactGoogleMapsUrl(page, bar);
+        bar.googleMapsUrl = result.resolvedUrl;
+        mapsCache[cacheKey] = {
+          query: result.query,
+          searchUrl: result.searchUrl,
+          resolvedUrl: result.resolvedUrl,
+          exact: result.exact,
+        };
+        saveMapsCache(mapsCache);
+
+        if (result.exact) {
+          exactResolved++;
+          console.log("  Link exato encontrado");
+        } else {
+          fallbackKept++;
+          console.log("  Mantido link de busca");
+        }
+      } catch (err) {
+        fallbackKept++;
+        mapsCache[cacheKey] = {
+          query: buildMapsSearchQuery(bar),
+          searchUrl: buildMapsSearchUrl(bar),
+          resolvedUrl: bar.googleMapsUrl,
+          exact: false,
+          error: err.message.split("\n")[0],
+        };
+        saveMapsCache(mapsCache);
+        console.log(`  Mantido link de busca (${err.message.split("\n")[0]})`);
+      }
+
+      await page.waitForTimeout(500);
+    }
+  } finally {
+    await context.close();
+    await browser.close();
+  }
+
+  console.log(`Links exatos: ${exactResolved}/${unresolvedBars.length}`);
+  console.log(`Fallback mantido: ${fallbackKept}`);
+  console.log(`Lidos do cache: ${fromCache}`);
 }
 
 // --- Distance ---
@@ -186,17 +427,17 @@ async function main() {
 
   // Step 2: Geocode
   console.log("=== Geocoding ===\n");
-  const cache = loadCache();
+  const cache = loadGeocodeCache();
 
   // Geocode home address
   if (!cache["__HOME__"]) {
     console.log("Geocoding casa...");
-    const homeCoords = await geocode(HOME_ADDRESS);
-    if (homeCoords) {
-      cache["__HOME__"] = homeCoords;
-      saveCache(cache);
-      console.log(`  Casa: ${homeCoords.lat}, ${homeCoords.lng}`);
-    } else {
+      const homeCoords = await geocode(HOME_ADDRESS);
+      if (homeCoords) {
+        cache["__HOME__"] = homeCoords;
+        saveGeocodeCache(cache);
+        console.log(`  Casa: ${homeCoords.lat}, ${homeCoords.lng}`);
+      } else {
       console.error("ERRO: nao conseguiu geocodar o endereco de casa!");
       process.exit(1);
     }
@@ -226,11 +467,14 @@ async function main() {
     } else {
       console.log("  Nao encontrado");
     }
-    saveCache(cache);
+    saveGeocodeCache(cache);
     await sleep(1100);
   }
 
-  // Step 3: Calculate distances
+  // Step 3: Resolve exact Google Maps pages
+  await enrichGoogleMapsUrls(parsedBars);
+
+  // Step 4: Calculate distances
   console.log("\n=== Calculando distancias ===\n");
   let geocoded = 0;
   for (const bar of parsedBars) {
@@ -260,7 +504,7 @@ async function main() {
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(parsedBars, null, 2), "utf-8");
   console.log(`\nSalvo: ${OUTPUT_FILE} (${parsedBars.length} bares)`);
 
-  // Step 4: Generate individual bar pages
+  // Step 5: Generate individual bar pages
   console.log("\n=== Gerando paginas individuais ===\n");
   const BUTECO_DIR = path.join(__dirname, "..", "buteco");
   let generated = 0;

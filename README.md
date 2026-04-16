@@ -51,6 +51,7 @@ Esse comando:
 - lê os dados brutos
 - extrai prato, descrição, endereço, telefone e horário
 - faz geocodificação dos bares
+- tenta resolver links exatos do Google Maps para cada bar
 - calcula a distância em relação ao endereço fixo
 - ordena os bares por distância
 - gera `data/bars-final.json`
@@ -64,16 +65,17 @@ As distâncias são calculadas a partir de:
 
 Esse valor está definido em [scripts/process.js](/Users/matheus/Projects/buteco/scripts/process.js).
 
-## Cache de geocodificação
+## Cache de geocodificação e Maps
 
-O processamento usa cache local para evitar repetir consultas de geocodificação.
+O processamento usa cache local para evitar repetir consultas externas de geocodificação e resolução de links do Google Maps.
 
 Arquivos relevantes:
 
 - `data/geocode-cache.json`
+- `data/google-maps-cache.json`
 - `data/bars-final.json`
 
-Se você mudar endereços, regras de parsing ou a origem da distância, talvez seja necessário limpar ou revisar o cache antes de rodar o build novamente.
+Se você mudar endereços, nomes dos bares ou regras de busca, talvez seja necessário limpar ou revisar esses caches antes de rodar o build novamente.
 
 ## Estrutura principal
 
