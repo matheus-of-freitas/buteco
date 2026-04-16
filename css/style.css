@@ -1,0 +1,843 @@
+:root {
+  --cor-1: #1f331e;
+  --cor-2: #fc802d;
+  --cor-3: #000;
+  --cor-4: #fff;
+  --cor-5: #1f331e;
+  --cor-6: #ffba45;
+  --cor-7: #f9edd9;
+  --cor-8: #4d032e;
+  --cor-9: #31b67b;
+  --font-cookit: "cookitregular", Helvetica, Arial, sans-serif;
+  --font-inter: "Inter", Helvetica, Arial, sans-serif;
+  --font-roboto: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+  font-family: "cookitregular";
+  src: url("../original-theme/assets/fonts/espiritu/espiritu.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "espicon";
+  src: url("../original-theme/assets/fonts/espiritu/espiritu-condensed.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../original-theme/assets/fonts/Roboto/Roboto-Regular.woff2") format("woff2"),
+       url("../original-theme/assets/fonts/Roboto/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../original-theme/assets/fonts/Roboto/Roboto-Medium.woff2") format("woff2"),
+       url("../original-theme/assets/fonts/Roboto/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../original-theme/assets/fonts/Roboto/Roboto-Bold.woff2") format("woff2"),
+       url("../original-theme/assets/fonts/Roboto/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../original-theme/assets/fonts/Inter/Inter18pt-Light.woff2") format("woff2"),
+       url("../original-theme/assets/fonts/Inter/Inter18pt-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../original-theme/assets/fonts/Inter/Inter18pt-Medium.woff2") format("woff2"),
+       url("../original-theme/assets/fonts/Inter/Inter18pt-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../original-theme/assets/fonts/Inter/Inter18pt-Bold.woff2") format("woff2"),
+       url("../original-theme/assets/fonts/Inter/Inter18pt-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../original-theme/assets/fonts/Inter/Inter18pt-Black.woff2") format("woff2"),
+       url("../original-theme/assets/fonts/Inter/Inter18pt-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-inter);
+  color: var(--cor-3);
+  font-size: 0;
+  background: var(--cor-7);
+}
+
+body section,
+body div,
+body p,
+body span {
+  font-size: 16px;
+}
+
+a,
+.btn-default,
+.navbar {
+  transition: all 0.35s ease;
+}
+
+a {
+  color: var(--cor-1);
+}
+
+p {
+  margin-bottom: 0;
+}
+
+h1,
+h2 {
+  text-transform: uppercase;
+}
+
+.section-title {
+  width: 100%;
+  margin: 0 0 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-cookit);
+  font-size: 75px;
+  color: var(--cor-1);
+  line-height: 0.95;
+  text-align: center;
+}
+
+.section-simple-title {
+  font-family: var(--font-cookit);
+  font-size: 36px;
+  color: var(--cor-2);
+}
+
+.widget-title {
+  color: #000;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.social-networks-widget {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social-networks-widget li {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.social-networks-widget li:last-child {
+  margin-right: 0;
+}
+
+.social-networks-widget a {
+  display: flex;
+  width: 49px;
+  height: 49px;
+  color: var(--cor-1);
+  text-decoration: none;
+}
+
+.social-networks-widget a .text {
+  display: none;
+}
+
+.social-networks-widget a .ico {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cor-1);
+  border-radius: 50%;
+}
+
+.social-networks-widget a svg {
+  width: 30px;
+  height: auto;
+  fill: var(--cor-1);
+}
+
+.social-networks-widget a:hover svg {
+  fill: var(--cor-4);
+}
+
+.social-networks-widget li a.facebook:hover .ico {
+  background-color: #1877f2;
+}
+
+.social-networks-widget li a.instagram:hover .ico {
+  background-color: #dd2363;
+}
+
+.social-networks-widget li a.twitter:hover .ico {
+  background-color: #1da1f2;
+}
+
+.social-networks-widget li a.youtube:hover .ico {
+  background-color: #ff0000;
+}
+
+#header .header-top {
+  padding: 20px 0;
+  background: var(--cor-4);
+}
+
+#header .logo img {
+  width: 120px;
+  height: auto;
+}
+
+#header .logo p {
+  display: none;
+  margin-left: 35px;
+  color: #8b390e;
+  font-size: 19.2px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+#header p {
+  margin-bottom: 0;
+}
+
+#header .widget.widget_text {
+  display: block;
+}
+
+#header .widget.widget_text .textwidget {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+#header .banner {
+  color: #ffdd00;
+  padding: 25px 40px;
+  font-family: var(--font-cookit);
+  font-size: 26px;
+  font-style: normal;
+  line-height: 1;
+  white-space: normal;
+  text-transform: uppercase;
+  background-color: #fff;
+  background-image: url("../original-theme/assets/images/bg-banner-header.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 0;
+}
+
+#header .widget_widget_social_network {
+  display: none;
+  height: 100%;
+}
+
+#header .widget-social .widget-title {
+  color: var(--cor-1);
+}
+
+#controls {
+  background-color: var(--cor-6);
+  padding: 12px 0;
+  z-index: 100;
+}
+
+#controls .form-control,
+#controls .form-select {
+  height: auto !important;
+  border-radius: 0;
+  border: 1px solid var(--cor-3);
+  color: var(--cor-3);
+  background-color: var(--cor-4);
+  font-size: 15px;
+  padding: 0.65rem 0.85rem;
+}
+
+#controls .form-select {
+  background-image: url("../original-theme/assets/images/ico-select.png");
+  background-size: auto;
+}
+
+#controls .form-control::placeholder {
+  color: #666;
+}
+
+#controls .form-control:focus,
+#controls .form-select:focus {
+  border-color: var(--cor-1);
+  box-shadow: none;
+}
+
+#controls .form-select option {
+  color: var(--cor-3);
+}
+
+#controls .control-origin {
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 14px;
+}
+
+.bg-counter {
+  background: var(--cor-1) !important;
+  color: var(--cor-6);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 0.55em 0.9em;
+}
+
+.butecos-wrap {
+  padding: 50px 0 70px;
+  background: var(--cor-2) url("https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/01/29135447/fundo_mecanica_c.png") repeat center center;
+}
+
+.butecos-wrap .section-title {
+  font-size: 74px;
+  color: var(--cor-1);
+}
+
+.butecos-wrap .total {
+  color: var(--cor-3);
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.item {
+  height: 100%;
+  background-color: var(--cor-4);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.item .image {
+  position: relative;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.item .image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+.distance-badge {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--cor-9);
+  color: var(--cor-4);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.item .caption {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 30px 30px;
+}
+
+.item .caption h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cor-3);
+  line-height: 1.08;
+  margin: 0 0 10px;
+}
+
+.item .caption .dish-name {
+  min-height: 0;
+  margin-bottom: 8px;
+  color: var(--cor-2);
+  font-family: var(--font-cookit);
+  font-size: 24px;
+  line-height: 0.95;
+}
+
+.item .caption p {
+  min-height: 33px;
+  margin-bottom: 12px;
+  color: #484848;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.item .caption .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.item .caption a {
+  color: var(--cor-1);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.item .caption a:hover {
+  color: var(--cor-3);
+}
+
+.item .caption a.address {
+  color: var(--cor-8);
+}
+
+#empty-state p {
+  color: var(--cor-1);
+}
+
+body.single {
+  background: var(--cor-7);
+}
+
+.single-buteco-wrap {
+  padding: 40px 0 80px;
+  background: var(--cor-7);
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--cor-1);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.btn-back:hover {
+  color: var(--cor-3);
+}
+
+.buteco-detail {
+  padding: 50px 0 0;
+  background: #ffd081
+    url("https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/01/29135447/fundo_mecanica_c.png")
+    repeat center center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.buteco-detail .detail-photo-wrap {
+  padding: 0 30px;
+}
+
+.buteco-detail .detail-photo {
+  display: block;
+  width: 100%;
+  border-radius: 25px;
+  margin-bottom: 50px;
+}
+
+.buteco-detail .detail-body {
+  padding: 0 30px 45px;
+}
+
+.buteco-detail .section-title {
+  margin-bottom: 20px;
+  justify-content: flex-start;
+  text-align: left;
+  color: var(--cor-3);
+  font-size: 74px;
+}
+
+.buteco-detail .detail-body strong {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--cor-1);
+  font: bold 60px var(--font-cookit);
+  line-height: 0.92;
+}
+
+.buteco-detail .dish-desc {
+  margin-bottom: 32px;
+  color: var(--cor-3);
+  font-size: 22px;
+  line-height: 1.45;
+}
+
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.price-tag,
+.distance-tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.price-tag {
+  background: var(--cor-6);
+  color: var(--cor-1);
+}
+
+.distance-tag {
+  background: var(--cor-1);
+  color: var(--cor-6);
+}
+
+.detail-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--cor-3);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.detail-row i {
+  flex-shrink: 0;
+  font-size: 20px;
+  margin-top: 3px;
+  color: var(--cor-1);
+}
+
+.detail-row a {
+  color: var(--cor-1);
+}
+
+.hours-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.detail-actions .btn {
+  border: none;
+  border-radius: 25px;
+  padding: 10px 24px;
+  font-size: 18px;
+  line-height: 34px;
+  text-decoration: none;
+}
+
+.btn-buteco {
+  background-color: var(--cor-1);
+  color: var(--cor-4);
+}
+
+.btn-buteco:hover {
+  background-color: var(--cor-4);
+  color: var(--cor-1);
+}
+
+.btn-maps {
+  background-color: var(--cor-4);
+  color: var(--cor-1);
+}
+
+.btn-maps:hover {
+  background-color: var(--cor-1);
+  color: var(--cor-4);
+}
+
+#footer {
+  background: var(--cor-7) center bottom no-repeat;
+  background-image: url("https://comidadibuteco.com.br/wp-content/themes/comida-di-buteco/assets/images/bottom_rodape.png");
+  font-size: 17px;
+}
+
+.footer-top {
+  margin-top: -60px;
+  padding: 70px 0 57px;
+  background-repeat: repeat-x;
+  background-image: url("https://comidadibuteco.com.br/wp-content/themes/comida-di-buteco/assets/images/top_rodape.png");
+}
+
+#footer .column-1 {
+  display: flex;
+  flex-direction: row;
+}
+
+#footer .column-1 .widget_text img {
+  width: 174px;
+  height: auto;
+  margin: 0;
+}
+
+#footer .column-1 .widget_text p {
+  margin: 16px 0 8px;
+  color: var(--cor-8);
+  line-height: 1.15;
+}
+
+#footer .column-1 .widget_text a {
+  color: var(--cor-8);
+  font-size: 16px;
+}
+
+#footer .column-1 .widget_text a:hover {
+  color: var(--cor-1);
+}
+
+#footer .footer-note {
+  color: #5f574f;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+#footer .widget-social-footer .widget-title {
+  color: var(--cor-8);
+  font-size: 18px;
+}
+
+#footer .widget-social-footer li a {
+  width: 36px;
+  height: 36px;
+}
+
+#footer .widget-social-footer li svg {
+  width: 20px;
+}
+
+#footer .widget-social-footer a .ico {
+  border-color: var(--cor-8);
+}
+
+#footer .widget-social-footer a svg {
+  fill: var(--cor-8);
+}
+
+@media (min-width: 768px) {
+  #header .widget_widget_social_network {
+    display: flex;
+    min-width: 170px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+  }
+
+  #header .widget_widget_social_network a {
+    width: 30px;
+    height: 30px;
+  }
+
+  #header .widget_widget_social_network a svg {
+    width: 20px;
+  }
+
+  #header .banner {
+    margin: 0 20px;
+    text-align: center;
+    font-size: 26px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 992px) {
+  #header .logo img {
+    width: 175px;
+  }
+
+  #header .banner {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #header .banner {
+    font-size: 26px;
+  }
+
+  #header .widget_widget_social_network {
+    min-width: 241px;
+  }
+
+  #header .widget_widget_social_network a {
+    width: 49px;
+    height: 49px;
+  }
+
+  #header .widget_widget_social_network a svg {
+    width: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  .section-title,
+  .butecos-wrap .section-title,
+  .buteco-detail .section-title {
+    font-size: 54px;
+  }
+
+  .buteco-detail .detail-body strong {
+    font-size: 44px;
+  }
+
+  .buteco-detail .dish-desc {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 767px) {
+  #header .header-top .row > div,
+  #header .header-top .d-flex {
+    flex-wrap: wrap;
+    justify-content: center !important;
+    gap: 14px;
+  }
+
+  #header .banner {
+    width: 100%;
+    margin: 0;
+    padding: 18px 20px;
+    font-size: 13px;
+    line-height: 1;
+    white-space: normal;
+  }
+
+  .section-title,
+  .butecos-wrap .section-title,
+  .buteco-detail .section-title {
+    font-size: 44px;
+  }
+
+  .butecos-wrap {
+    padding: 40px 0 50px;
+  }
+
+  .item .caption {
+    padding: 0 20px 22px;
+  }
+
+  .buteco-detail .detail-photo-wrap,
+  .buteco-detail .detail-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #footer .widget {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  #header .logo img {
+    width: 110px;
+  }
+
+  #header .header-top {
+    padding: 16px 0;
+  }
+
+  #header .banner {
+    font-size: 13px;
+    line-height: 100%;
+  }
+
+  #controls .control-origin {
+    display: none;
+  }
+
+  .social-networks-widget li {
+    margin-right: 8px;
+  }
+
+  .social-networks-widget a,
+  #footer .widget-social-footer li a {
+    width: 34px;
+    height: 34px;
+  }
+
+  .social-networks-widget a svg,
+  #footer .widget-social-footer li svg {
+    width: 18px;
+  }
+
+  .item .caption h2 {
+    font-size: 20px;
+  }
+
+  .item .caption .dish-name {
+    font-size: 21px;
+  }
+
+  .buteco-detail .detail-body strong {
+    font-size: 34px;
+  }
+
+  .detail-row {
+    font-size: 16px;
+  }
+
+  .detail-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

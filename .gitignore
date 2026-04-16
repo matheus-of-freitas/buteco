@@ -1,0 +1,9 @@
+node_modules/
+.chrome-profile/
+data/bars-raw.json
+data/bars-listing.json
+data/bars.json
+data/listing-page.html
+data/screenshot-*.png
+data/geocode-cache.json
+data/google-cache.json

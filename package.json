@@ -1,0 +1,16 @@
+{
+  "name": "buteco",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "scrape": "node scripts/scrape.js",
+    "build": "node scripts/process.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "playwright": "^1.59.1"
+  }
+}
