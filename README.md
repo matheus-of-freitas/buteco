@@ -14,10 +14,10 @@ O repositório contém:
 
 - uma homepage estática em [index.html](/Users/matheus/Projects/buteco/index.html)
 - estilos e comportamento de interface em [css/style.css](/Users/matheus/Projects/buteco/css/style.css) e [js/app.js](/Users/matheus/Projects/buteco/js/app.js)
+- assets locais de fontes e imagens em `assets/`
 - scripts de coleta e processamento em [scripts/scrape.js](/Users/matheus/Projects/buteco/scripts/scrape.js) e [scripts/process.js](/Users/matheus/Projects/buteco/scripts/process.js)
 - dados processados em [data/bars-final.json](/Users/matheus/Projects/buteco/data/bars-final.json)
 - páginas individuais geradas em `buteco/*/index.html`
-- arquivos originais do tema em `original-theme/`, usados como referência visual
 
 ## Requisitos
 
@@ -80,6 +80,9 @@ Se você mudar endereços, regras de parsing ou a origem da distância, talvez s
 ```text
 .
 ├── index.html
+├── assets/
+│   ├── fonts/
+│   └── images/
 ├── css/
 │   └── style.css
 ├── js/
@@ -91,7 +94,6 @@ Se você mudar endereços, regras de parsing ou a origem da distância, talvez s
 │   └── bars-final.json
 ├── buteco/
 │   └── */index.html
-└── original-theme/
 ```
 
 ## Como a interface funciona
@@ -107,7 +109,7 @@ Se você mudar endereços, regras de parsing ou a origem da distância, talvez s
 A fidelidade visual foi construída combinando:
 
 - a estrutura local do projeto
-- os arquivos do tema original em `original-theme/`
+- assets locais extraídos do tema original quando necessários
 - overrides observados no HTML salvo da página original
 
 O arquivo mais importante para isso é [css/style.css](/Users/matheus/Projects/buteco/css/style.css).

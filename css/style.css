@@ -15,20 +15,20 @@
 
 @font-face {
   font-family: "cookitregular";
-  src: url("../original-theme/assets/fonts/espiritu/espiritu.woff") format("woff");
+  src: url("../assets/fonts/espiritu/espiritu.woff") format("woff");
   font-display: swap;
 }
 
 @font-face {
   font-family: "espicon";
-  src: url("../original-theme/assets/fonts/espiritu/espiritu-condensed.woff") format("woff");
+  src: url("../assets/fonts/espiritu/espiritu-condensed.woff") format("woff");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../original-theme/assets/fonts/Roboto/Roboto-Regular.woff2") format("woff2"),
-       url("../original-theme/assets/fonts/Roboto/Roboto-Regular.woff") format("woff");
+  src: url("../assets/fonts/Roboto/Roboto-Regular.woff2") format("woff2"),
+       url("../assets/fonts/Roboto/Roboto-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -36,8 +36,8 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("../original-theme/assets/fonts/Roboto/Roboto-Medium.woff2") format("woff2"),
-       url("../original-theme/assets/fonts/Roboto/Roboto-Medium.woff") format("woff");
+  src: url("../assets/fonts/Roboto/Roboto-Medium.woff2") format("woff2"),
+       url("../assets/fonts/Roboto/Roboto-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -45,8 +45,8 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("../original-theme/assets/fonts/Roboto/Roboto-Bold.woff2") format("woff2"),
-       url("../original-theme/assets/fonts/Roboto/Roboto-Bold.woff") format("woff");
+  src: url("../assets/fonts/Roboto/Roboto-Bold.woff2") format("woff2"),
+       url("../assets/fonts/Roboto/Roboto-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -54,8 +54,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../original-theme/assets/fonts/Inter/Inter18pt-Light.woff2") format("woff2"),
-       url("../original-theme/assets/fonts/Inter/Inter18pt-Light.woff") format("woff");
+  src: url("../assets/fonts/Inter/Inter18pt-Light.woff2") format("woff2"),
+       url("../assets/fonts/Inter/Inter18pt-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -63,8 +63,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../original-theme/assets/fonts/Inter/Inter18pt-Medium.woff2") format("woff2"),
-       url("../original-theme/assets/fonts/Inter/Inter18pt-Medium.woff") format("woff");
+  src: url("../assets/fonts/Inter/Inter18pt-Medium.woff2") format("woff2"),
+       url("../assets/fonts/Inter/Inter18pt-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -72,8 +72,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../original-theme/assets/fonts/Inter/Inter18pt-Bold.woff2") format("woff2"),
-       url("../original-theme/assets/fonts/Inter/Inter18pt-Bold.woff") format("woff");
+  src: url("../assets/fonts/Inter/Inter18pt-Bold.woff2") format("woff2"),
+       url("../assets/fonts/Inter/Inter18pt-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -81,8 +81,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../original-theme/assets/fonts/Inter/Inter18pt-Black.woff2") format("woff2"),
-       url("../original-theme/assets/fonts/Inter/Inter18pt-Black.woff") format("woff");
+  src: url("../assets/fonts/Inter/Inter18pt-Black.woff2") format("woff2"),
+       url("../assets/fonts/Inter/Inter18pt-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -258,7 +258,7 @@ h2 {
   white-space: normal;
   text-transform: uppercase;
   background-color: #fff;
-  background-image: url("../original-theme/assets/images/bg-banner-header.jpg");
+  background-image: url("../assets/images/bg-banner-header.jpg");
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 0;
@@ -291,7 +291,7 @@ h2 {
 }
 
 #controls .form-select {
-  background-image: url("../original-theme/assets/images/ico-select.png");
+  background-image: url("../assets/images/ico-select.png");
   background-size: auto;
 }
 
