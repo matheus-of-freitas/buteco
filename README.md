@@ -3,7 +3,7 @@
 Este projeto é uma versão estática do guia dos bares participantes do **Comida di Buteco 2026 no Rio de Janeiro**, com foco em:
 
 - listar todos os butecos participantes
-- ordenar por distância a partir de um endereço fixo
+- ordenar pela menor distância de rota real a partir de um endereço fixo
 - filtrar por bairro e busca textual
 - gerar páginas individuais para cada bar
 - preservar a identidade visual do site original
@@ -52,30 +52,32 @@ Esse comando:
 - extrai prato, descrição, endereço, telefone e horário
 - faz geocodificação dos bares
 - tenta resolver links exatos do Google Maps para cada bar
-- calcula a distância em relação ao endereço fixo
-- ordena os bares por distância
+- calcula rotas reais de caminhada e carro/Uber em relação ao endereço fixo
+- seleciona uma rota principal: caminhada até 20 min, senão carro/Uber
+- ordena os bares pela distância dessa rota principal
 - gera `data/bars-final.json`
 - regenera as páginas em `buteco/*/index.html`
 
 ## Endereço de referência
 
-As distâncias são calculadas a partir de:
+As rotas são calculadas a partir de:
 
 `Rua do Bispo, 295, Rio Comprido, Rio de Janeiro, RJ, Brasil`
 
 Esse valor está definido em [scripts/process.js](/Users/matheus/Projects/buteco/scripts/process.js).
 
-## Cache de geocodificação e Maps
+## Cache de geocodificação, Maps e rotas
 
-O processamento usa cache local para evitar repetir consultas externas de geocodificação e resolução de links do Google Maps.
+O processamento usa cache local para evitar repetir consultas externas de geocodificação, resolução de links do Google Maps e coleta de rotas.
 
 Arquivos relevantes:
 
 - `data/geocode-cache.json`
 - `data/google-maps-cache.json`
+- `data/google-maps-route-cache.json`
 - `data/bars-final.json`
 
-Se você mudar endereços, nomes dos bares ou regras de busca, talvez seja necessário limpar ou revisar esses caches antes de rodar o build novamente.
+Se você mudar endereços, nomes dos bares, origem das rotas ou regras de busca, talvez seja necessário limpar ou revisar esses caches antes de rodar o build novamente.
 
 ## Estrutura principal
 
@@ -103,8 +105,8 @@ Se você mudar endereços, nomes dos bares ou regras de busca, talvez seja neces
 - `js/app.js` carrega `data/bars-final.json`
 - todos os bares são carregados no front-end
 - a interface filtra por bairro e texto
-- a ordenação pode ser por distância ou nome
-- hoje os bares não são excluídos por distância; eles apenas são ordenados
+- a ordenação pode ser por distância da rota principal ou nome
+- hoje os bares não são excluídos por rota; eles apenas são ordenados
 
 ## Ajustes visuais
 
@@ -118,6 +120,6 @@ O arquivo mais importante para isso é [css/style.css](/Users/matheus/Projects/b
 
 ## Observações
 
-- O build depende de geocodificação externa para preencher coordenadas.
-- Se algum bar não for geocodificado, ele continua no dataset e tende a ficar no fim da ordenação por distância.
+- O build depende de geocodificação externa e de páginas do Google Maps para preencher links e rotas.
+- Se algum bar não tiver rota confiável, ele continua no dataset e tende a ficar no fim da ordenação principal.
 - As páginas individuais são geradas automaticamente; edições manuais nelas podem ser sobrescritas no próximo `npm run build`.

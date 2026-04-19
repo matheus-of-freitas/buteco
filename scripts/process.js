@@ -6,10 +6,32 @@ const DATA_DIR = path.join(__dirname, "..", "data");
 const RAW_FILE = path.join(DATA_DIR, "bars-raw.json");
 const GEOCODE_CACHE_FILE = path.join(DATA_DIR, "geocode-cache.json");
 const MAPS_CACHE_FILE = path.join(DATA_DIR, "google-maps-cache.json");
+const ROUTE_CACHE_FILE = path.join(DATA_DIR, "google-maps-route-cache.json");
 const OUTPUT_FILE = path.join(DATA_DIR, "bars-final.json");
 
 const HOME_ADDRESS = "Rua do Bispo, 295, Rio Comprido, Rio de Janeiro, RJ, Brasil";
+const HOME_ROUTE_ORIGIN = "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil";
 const GOOGLE_MAPS_SEARCH_BASE = "https://www.google.com/maps/search/?api=1&query=";
+const ROUTE_CACHE_VERSION = 1;
+const WALKING_ROUTE_LIMIT_MINUTES = 20;
+const ROUTE_LOOKUP_ATTEMPTS = 3;
+const ROUTE_RETRY_DELAY_MS = 1200;
+const ROUTE_PANEL_RECOVERY_WAIT_MS = 6000;
+const ROUTE_FINAL_RECOVERY_WAIT_MS = 8000;
+const DEFINITIVE_ROUTE_FAILURES = new Set([
+  "Não foi possível calcular uma rota",
+  "Nenhuma rota encontrada",
+]);
+const ROUTE_MODE_CONFIG = {
+  walking: {
+    travelMode: "walking",
+    label: "a pé",
+  },
+  driving: {
+    travelMode: "driving",
+    label: "de carro/Uber",
+  },
+};
 const GENERIC_PLACE_TOKENS = new Set([
   "bar",
   "boteco",
@@ -172,6 +194,14 @@ function loadMapsCache() {
 
 function saveMapsCache(cache) {
   saveJsonFile(MAPS_CACHE_FILE, cache);
+}
+
+function loadRouteCache() {
+  return loadJsonFile(ROUTE_CACHE_FILE, {});
+}
+
+function saveRouteCache(cache) {
+  saveJsonFile(ROUTE_CACHE_FILE, cache);
 }
 
 function isExactGoogleMapsUrl(url) {
@@ -368,18 +398,409 @@ async function enrichGoogleMapsUrls(bars) {
   console.log(`Lidos do cache: ${fromCache}`);
 }
 
-// --- Distance ---
+// --- Google Maps route metrics ---
 
-function haversine(lat1, lon1, lat2, lon2) {
-  const R = 6371;
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) ** 2;
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+function buildRouteDestinationQuery(bar) {
+  const placeLabel = getGoogleMapsPlaceLabel(bar.googleMapsUrl);
+  return [
+    placeLabel || bar.name,
+    cleanAddressForMapsSearch(bar.address),
+    bar.complement,
+  ]
+    .filter(Boolean)
+    .join(", ");
+}
+
+function buildGoogleMapsDirectionsUrl(destinationQuery, mode) {
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(HOME_ROUTE_ORIGIN)}&destination=${encodeURIComponent(destinationQuery)}&travelmode=${ROUTE_MODE_CONFIG[mode].travelMode}`;
+}
+
+function parseDurationTextToMinutes(text) {
+  if (!text) return null;
+
+  const normalized = text.toLowerCase().replace(/\s+/g, " ").trim();
+  const hourMatch = normalized.match(/(\d+)\s*h/);
+  const minuteMatch = normalized.match(/(\d+)\s*min/);
+
+  if (!hourMatch && !minuteMatch) return null;
+
+  const hours = hourMatch ? Number(hourMatch[1]) : 0;
+  const minutes = minuteMatch ? Number(minuteMatch[1]) : 0;
+  return hours * 60 + minutes;
+}
+
+function parseDistanceTextToKm(text) {
+  if (!text) return null;
+
+  const normalized = text.toLowerCase().replace(/\s+/g, " ").trim().replace(",", ".");
+  const kmMatch = normalized.match(/<?\s*([\d.]+)\s*km/);
+  if (kmMatch) {
+    return Math.round(Number(kmMatch[1]) * 100) / 100;
+  }
+
+  const meterMatch = normalized.match(/<?\s*([\d.]+)\s*m/);
+  if (meterMatch) {
+    return Math.round((Number(meterMatch[1]) / 1000) * 100) / 100;
+  }
+
+  return null;
+}
+
+function extractPrimaryRouteMetrics(text) {
+  const segments = [];
+  if (text.includes("Copiar link")) {
+    segments.push(text.split("Copiar link").pop());
+  }
+  segments.push(text);
+
+  for (const segment of segments) {
+    const lines = segment
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+
+    for (let i = 0; i < lines.length; i++) {
+      const minutes = parseDurationTextToMinutes(lines[i]);
+      if (minutes === null) continue;
+
+      for (let j = i + 1; j < Math.min(i + 5, lines.length); j++) {
+        const distanceKm = parseDistanceTextToKm(lines[j]);
+        if (distanceKm === null) continue;
+
+        const routeSummary = lines[j + 1] && lines[j + 1].toLowerCase().startsWith("via ")
+          ? lines[j + 1]
+          : "";
+
+        return {
+          durationText: lines[i],
+          minutes,
+          distanceLabel: lines[j],
+          distanceKm,
+          routeSummary,
+        };
+      }
+    }
+  }
+
+  return null;
+}
+
+function createRouteCacheEntry(bar) {
+  return {
+    version: ROUTE_CACHE_VERSION,
+    homeOrigin: HOME_ROUTE_ORIGIN,
+    googleMapsUrl: bar.googleMapsUrl,
+    destinationQuery: buildRouteDestinationQuery(bar),
+    walking: null,
+    driving: null,
+    walkingError: "",
+    drivingError: "",
+  };
+}
+
+function getRouteFailureReason(text) {
+  if (!text) return "Página vazia";
+  if (text.includes("Não foi possível calcular uma rota")) return "Não foi possível calcular uma rota";
+  if (text.includes("Nenhuma rota encontrada")) return "Nenhuma rota encontrada";
+  if (text.includes("Antes de acessar o Google Maps")) return "Tela de consentimento do Google Maps";
+  if (!text.includes("Copiar link") && !text.includes("Detalhes")) return "Painel de rotas não carregou";
+  return "Métricas não reconhecidas";
+}
+
+function isDefinitiveRouteFailure(reason) {
+  return DEFINITIVE_ROUTE_FAILURES.has(reason);
+}
+
+function isRouteModeResolved(metric, error) {
+  return Boolean(metric || (error && isDefinitiveRouteFailure(error)));
+}
+
+function shouldRetryRouteEntry(entry) {
+  return !["walking", "driving"].every((mode) => isRouteModeResolved(entry[mode], entry[`${mode}Error`]));
+}
+
+function isRouteCacheEntryValid(entry, bar) {
+  return Boolean(
+    entry &&
+    entry.version === ROUTE_CACHE_VERSION &&
+    entry.homeOrigin === HOME_ROUTE_ORIGIN &&
+    entry.destinationQuery === buildRouteDestinationQuery(bar) &&
+    entry.googleMapsUrl === bar.googleMapsUrl &&
+    !shouldRetryRouteEntry(entry)
+  );
+}
+
+function assignModeRouteMetrics(bar, mode, metric) {
+  const prefix = mode === "walking" ? "walking" : "driving";
+  bar[`${prefix}Minutes`] = metric ? metric.minutes : null;
+  bar[`${prefix}DurationText`] = metric ? metric.durationText : "";
+  bar[`${prefix}DistanceKm`] = metric ? metric.distanceKm : null;
+  bar[`${prefix}DistanceLabel`] = metric ? metric.distanceLabel : "";
+  bar[`${prefix}RouteSummary`] = metric ? metric.routeSummary : "";
+}
+
+function applyHybridRanking(bar) {
+  let selectedMode = null;
+
+  if (bar.walkingMinutes !== null && bar.walkingMinutes <= WALKING_ROUTE_LIMIT_MINUTES) {
+    selectedMode = "walking";
+  } else if (bar.drivingMinutes !== null) {
+    selectedMode = "driving";
+  } else if (bar.walkingMinutes !== null) {
+    selectedMode = "walking";
+  }
+
+  if (!selectedMode) {
+    bar.rankingMode = "";
+    bar.rankingMinutes = null;
+    bar.rankingDurationText = "";
+    bar.rankingDistanceKm = null;
+    bar.rankingDistanceLabel = "";
+    bar.rankingRouteSummary = "";
+    bar.distanceKm = null;
+    return;
+  }
+
+  const prefix = selectedMode === "walking" ? "walking" : "driving";
+  bar.rankingMode = selectedMode;
+  bar.rankingMinutes = bar[`${prefix}Minutes`];
+  bar.rankingDurationText = bar[`${prefix}DurationText`];
+  bar.rankingDistanceKm = bar[`${prefix}DistanceKm`];
+  bar.rankingDistanceLabel = bar[`${prefix}DistanceLabel`];
+  bar.rankingRouteSummary = bar[`${prefix}RouteSummary`];
+  bar.distanceKm = bar.rankingDistanceKm;
+}
+
+function assignRouteMetricsFromCache(bar, entry) {
+  assignModeRouteMetrics(bar, "walking", entry.walking || null);
+  assignModeRouteMetrics(bar, "driving", entry.driving || null);
+  applyHybridRanking(bar);
+}
+
+async function waitForDirectionsPanel(page) {
+  await page.waitForFunction(() => {
+    const text = document.body ? document.body.innerText : "";
+    return (
+      text.includes("Copiar link") ||
+      text.includes("Detalhes") ||
+      text.includes("Não foi possível calcular uma rota") ||
+      text.includes("Nenhuma rota encontrada")
+    );
+  }, { timeout: 15000 }).catch(() => {});
+
+  await page.waitForTimeout(750);
+}
+
+async function resolveGoogleMapsRoute(page, bar, mode) {
+  const destinationQuery = buildRouteDestinationQuery(bar);
+  const directionsUrl = buildGoogleMapsDirectionsUrl(destinationQuery, mode);
+
+  await page.goto(directionsUrl, {
+    waitUntil: "domcontentloaded",
+    timeout: 60_000,
+  });
+
+  await waitForDirectionsPanel(page);
+  let bodyText = await page.locator("body").innerText();
+  let metric = extractPrimaryRouteMetrics(bodyText);
+  let error = metric ? "" : getRouteFailureReason(bodyText);
+
+  if (!metric && error === "Painel de rotas não carregou") {
+    await page.waitForTimeout(ROUTE_PANEL_RECOVERY_WAIT_MS);
+    bodyText = await page.locator("body").innerText();
+    metric = extractPrimaryRouteMetrics(bodyText);
+    error = metric ? "" : getRouteFailureReason(bodyText);
+  }
+
+  if (!metric && error === "Painel de rotas não carregou") {
+    await page.goto(directionsUrl, {
+      waitUntil: "domcontentloaded",
+      timeout: 60_000,
+    });
+    await page.waitForTimeout(ROUTE_FINAL_RECOVERY_WAIT_MS);
+    bodyText = await page.locator("body").innerText();
+    metric = extractPrimaryRouteMetrics(bodyText);
+    error = metric ? "" : getRouteFailureReason(bodyText);
+  }
+
+  return {
+    destinationQuery,
+    directionsUrl,
+    metric,
+    error,
+  };
+}
+
+async function createGoogleMapsContext(browser) {
+  const context = await browser.newContext({ locale: "pt-BR" });
+  await context.route("**/*", (route) => {
+    const type = route.request().resourceType();
+    if (["image", "media", "font"].includes(type)) {
+      return route.abort();
+    }
+    return route.continue();
+  });
+  return context;
+}
+
+function mergeRouteEntry(target, attemptEntry) {
+  for (const mode of ["walking", "driving"]) {
+    const errorKey = `${mode}Error`;
+
+    if (attemptEntry[mode]) {
+      target[mode] = attemptEntry[mode];
+      target[errorKey] = "";
+      continue;
+    }
+
+    if (target[mode]) continue;
+    if (!attemptEntry[errorKey]) continue;
+
+    if (!target[errorKey] || isDefinitiveRouteFailure(attemptEntry[errorKey])) {
+      target[errorKey] = attemptEntry[errorKey];
+    }
+  }
+}
+
+async function collectRouteMetricsForBar(browser, bar) {
+  const mergedEntry = createRouteCacheEntry(bar);
+  let attemptsUsed = 0;
+
+  for (let attempt = 1; attempt <= ROUTE_LOOKUP_ATTEMPTS; attempt++) {
+    attemptsUsed = attempt;
+    const attemptEntry = createRouteCacheEntry(bar);
+    const context = await createGoogleMapsContext(browser);
+    const page = await context.newPage();
+
+    try {
+      try {
+        const walking = await resolveGoogleMapsRoute(page, bar, "walking");
+        if (walking.metric) {
+          attemptEntry.walking = walking.metric;
+        } else {
+          attemptEntry.walkingError = walking.error;
+        }
+      } catch (err) {
+        attemptEntry.walkingError = err.message.split("\n")[0];
+      }
+
+      await page.waitForTimeout(300);
+
+      try {
+        const driving = await resolveGoogleMapsRoute(page, bar, "driving");
+        if (driving.metric) {
+          attemptEntry.driving = driving.metric;
+        } else {
+          attemptEntry.drivingError = driving.error;
+        }
+      } catch (err) {
+        attemptEntry.drivingError = err.message.split("\n")[0];
+      }
+    } finally {
+      await page.close().catch(() => {});
+      await context.close();
+    }
+
+    mergeRouteEntry(mergedEntry, attemptEntry);
+
+    if (!shouldRetryRouteEntry(mergedEntry)) {
+      break;
+    }
+
+    if (attempt < ROUTE_LOOKUP_ATTEMPTS) {
+      await sleep(ROUTE_RETRY_DELAY_MS);
+    }
+  }
+
+  mergedEntry.attempts = attemptsUsed;
+  return mergedEntry;
+}
+
+async function enrichRouteMetrics(bars) {
+  console.log("\n=== Coletando rotas reais do Google Maps ===\n");
+
+  const routeCache = loadRouteCache();
+  let fromCache = 0;
+  const barsToLookup = [];
+
+  for (const bar of bars) {
+    const cacheKey = getMapsCacheKey(bar);
+    const cached = routeCache[cacheKey];
+
+    if (isRouteCacheEntryValid(cached, bar)) {
+      assignRouteMetricsFromCache(bar, cached);
+      fromCache++;
+      continue;
+    }
+
+    barsToLookup.push(bar);
+  }
+
+  if (barsToLookup.length) {
+    const browser = await chromium.launch({ headless: true });
+
+    try {
+      for (let i = 0; i < barsToLookup.length; i++) {
+        const bar = barsToLookup[i];
+        const cacheKey = getMapsCacheKey(bar);
+
+        console.log(`[${i + 1}/${barsToLookup.length}] ${bar.name}`);
+        const entry = await collectRouteMetricsForBar(browser, bar);
+
+        if (entry.walking) {
+          console.log(`  A pé: ${entry.walking.durationText} / ${entry.walking.distanceLabel}`);
+        } else if (entry.walkingError) {
+          console.log(`  A pé: sem rota confiável (${entry.walkingError})`);
+        } else {
+          console.log("  A pé: sem rota confiável");
+        }
+
+        if (entry.driving) {
+          console.log(`  Carro/Uber: ${entry.driving.durationText} / ${entry.driving.distanceLabel}`);
+        } else if (entry.drivingError) {
+          console.log(`  Carro/Uber: sem rota confiável (${entry.drivingError})`);
+        } else {
+          console.log("  Carro/Uber: sem rota confiável");
+        }
+
+        if (entry.attempts > 1) {
+          console.log(`  Tentativas: ${entry.attempts}`);
+        }
+
+        routeCache[cacheKey] = entry;
+        saveRouteCache(routeCache);
+        assignRouteMetricsFromCache(bar, entry);
+      }
+    } finally {
+      await browser.close();
+    }
+  }
+
+  const walkingRanked = bars.filter((bar) => bar.rankingMode === "walking").length;
+  const drivingRanked = bars.filter((bar) => bar.rankingMode === "driving").length;
+  const unrouted = bars.filter((bar) => bar.rankingMinutes === null).length;
+
+  console.log(`Ranking a pé: ${walkingRanked}`);
+  console.log(`Ranking de carro/Uber: ${drivingRanked}`);
+  console.log(`Sem rota principal: ${unrouted}`);
+  console.log(`Lidos do cache: ${fromCache}`);
+}
+
+function compareBarsByRanking(a, b) {
+  if (a.rankingDistanceKm === null && b.rankingDistanceKm === null) {
+    return a.name.localeCompare(b.name, "pt-BR");
+  }
+  if (a.rankingDistanceKm === null) return 1;
+  if (b.rankingDistanceKm === null) return -1;
+  if (a.rankingDistanceKm !== b.rankingDistanceKm) {
+    return a.rankingDistanceKm - b.rankingDistanceKm;
+  }
+
+  if (a.rankingMinutes !== null && b.rankingMinutes !== null && a.rankingMinutes !== b.rankingMinutes) {
+    return a.rankingMinutes - b.rankingMinutes;
+  }
+
+  return a.name.localeCompare(b.name, "pt-BR");
 }
 
 // --- Main ---
@@ -413,6 +834,22 @@ async function main() {
       lat: null,
       lng: null,
       distanceKm: null,
+      walkingMinutes: null,
+      walkingDurationText: "",
+      walkingDistanceKm: null,
+      walkingDistanceLabel: "",
+      walkingRouteSummary: "",
+      drivingMinutes: null,
+      drivingDurationText: "",
+      drivingDistanceKm: null,
+      drivingDistanceLabel: "",
+      drivingRouteSummary: "",
+      rankingMode: "",
+      rankingMinutes: null,
+      rankingDurationText: "",
+      rankingDistanceKm: null,
+      rankingDistanceLabel: "",
+      rankingRouteSummary: "",
       googleRating: null,
       price: "R$ 40,00",
     };
@@ -474,24 +911,11 @@ async function main() {
   // Step 3: Resolve exact Google Maps pages
   await enrichGoogleMapsUrls(parsedBars);
 
-  // Step 4: Calculate distances
-  console.log("\n=== Calculando distancias ===\n");
-  let geocoded = 0;
-  for (const bar of parsedBars) {
-    if (bar.lat && bar.lng) {
-      bar.distanceKm = Math.round(haversine(home.lat, home.lng, bar.lat, bar.lng) * 10) / 10;
-      geocoded++;
-    }
-  }
-  console.log(`${geocoded}/${parsedBars.length} bares geocodados`);
+  // Step 4: Resolve route metrics and hybrid ranking
+  await enrichRouteMetrics(parsedBars);
 
-  // Sort by distance (nulls at end)
-  parsedBars.sort((a, b) => {
-    if (a.distanceKm === null && b.distanceKm === null) return 0;
-    if (a.distanceKm === null) return 1;
-    if (b.distanceKm === null) return -1;
-    return a.distanceKm - b.distanceKm;
-  });
+  // Sort by main route distance (nulls at end)
+  parsedBars.sort(compareBarsByRanking);
 
   // Use smaller photo URLs (768w instead of full size)
   for (const bar of parsedBars) {
@@ -522,18 +946,34 @@ async function main() {
 
   // Summary
   console.log("\n=== Resumo ===");
-  console.log(`Mais perto: ${parsedBars[0].name} (${parsedBars[0].distanceKm} km)`);
-  console.log(`Mais longe: ${parsedBars[parsedBars.length - 1].name} (${parsedBars[parsedBars.length - 1].distanceKm} km)`);
-  const within5 = parsedBars.filter((b) => b.distanceKm && b.distanceKm <= 5).length;
-  const within10 = parsedBars.filter((b) => b.distanceKm && b.distanceKm <= 10).length;
-  console.log(`Até 5 km: ${within5} bares`);
-  console.log(`Até 10 km: ${within10} bares`);
+  const closest = parsedBars.find((bar) => bar.rankingDistanceKm !== null);
+  const farthest = [...parsedBars].reverse().find((bar) => bar.rankingDistanceKm !== null);
+  if (closest) {
+    console.log(`Mais perto: ${closest.name} (${closest.rankingDurationText}, ${formatRankingDistance(closest)})`);
+  }
+  if (farthest) {
+    console.log(`Mais longe: ${farthest.name} (${farthest.rankingDurationText}, ${formatRankingDistance(farthest)})`);
+  }
+  console.log(`Até ${WALKING_ROUTE_LIMIT_MINUTES} min a pé: ${parsedBars.filter((bar) => bar.walkingMinutes !== null && bar.walkingMinutes <= WALKING_ROUTE_LIMIT_MINUTES).length} bares`);
+  console.log(`Com carro/Uber no ranking: ${parsedBars.filter((bar) => bar.rankingMode === "driving").length} bares`);
+  console.log(`Sem rota principal: ${parsedBars.filter((bar) => bar.rankingDistanceKm === null).length} bares`);
 }
 
 function getSlug(url) {
   if (!url) return "";
   const match = url.match(/\/buteco\/([^/]+)/);
   return match ? match[1] : "";
+}
+
+function formatDistanceKm(distanceKm) {
+  if (distanceKm === null || distanceKm === undefined) return "";
+  return `${distanceKm.toFixed(1).replace(".", ",")} km`;
+}
+
+function formatRankingDistance(bar) {
+  if (bar.rankingDistanceLabel) return bar.rankingDistanceLabel;
+  if (bar.rankingDistanceKm !== null) return formatDistanceKm(bar.rankingDistanceKm);
+  return "";
 }
 
 function escapeHtml(str) {
@@ -554,7 +994,7 @@ function formatPhoneHtml(phone) {
 }
 
 function generateBarPage(bar) {
-  const distanceText = bar.distanceKm !== null ? `${bar.distanceKm} km de casa` : "";
+  const distanceText = formatRankingDistance(bar);
   const addressLine = [bar.address, bar.complement].filter(Boolean).join(" — ");
 
   return `<!DOCTYPE html>
@@ -655,7 +1095,7 @@ function generateBarPage(bar) {
             </div>
           </div>
           <div class="col-12 col-md-4 text-center py-3">
-            <p class="footer-note">Dados do <a href="https://comidadibuteco.com.br/butecos/rio-de-janeiro/" target="_blank">Comida di Buteco 2026</a>.<br>Distâncias em linha reta a partir de Rio Comprido.</p>
+            <p class="footer-note">Dados do <a href="https://comidadibuteco.com.br/butecos/rio-de-janeiro/" target="_blank">Comida di Buteco 2026</a>.<br>Rotas reais a partir da Rua do Bispo, 295.</p>
           </div>
           <div class="col-12 col-md-4">
             <div class="widget-social widget-social-footer">

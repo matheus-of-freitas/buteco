@@ -22,6 +22,33 @@ function getSlug(bar) {
   return match ? match[1] : "";
 }
 
+function formatKmLabel(value) {
+  if (value === null || value === undefined) return "";
+  return `${value.toFixed(1).replace(".", ",")} km`;
+}
+
+function getRankingDistanceKm(bar) {
+  if (typeof bar.rankingDistanceKm === "number") return bar.rankingDistanceKm;
+  if (typeof bar.distanceKm === "number") return bar.distanceKm;
+  return null;
+}
+
+function getRankingLabel(bar) {
+  if (bar.rankingDistanceLabel) {
+    return bar.rankingDistanceLabel;
+  }
+
+  if (typeof bar.rankingDistanceKm === "number") {
+    return formatKmLabel(bar.rankingDistanceKm);
+  }
+
+  if (typeof bar.distanceKm === "number") {
+    return formatKmLabel(bar.distanceKm);
+  }
+
+  return "—";
+}
+
 function populateNeighborhoodFilter() {
   const counts = {};
   for (const bar of allBars) {
@@ -57,10 +84,21 @@ function applyFiltersAndSort() {
 
   filteredBars.sort((a, b) => {
     if (sortBy === "distance") {
-      if (a.distanceKm === null && b.distanceKm === null) return 0;
-      if (a.distanceKm === null) return 1;
-      if (b.distanceKm === null) return -1;
-      return a.distanceKm - b.distanceKm;
+      const aDistance = getRankingDistanceKm(a);
+      const bDistance = getRankingDistanceKm(b);
+      if (aDistance === null && bDistance === null) return a.name.localeCompare(b.name, "pt-BR");
+      if (aDistance === null) return 1;
+      if (bDistance === null) return -1;
+      if (aDistance !== bDistance) return aDistance - bDistance;
+
+      const aMinutes = typeof a.rankingMinutes === "number" ? a.rankingMinutes : null;
+      const bMinutes = typeof b.rankingMinutes === "number" ? b.rankingMinutes : null;
+      if (aMinutes === null && bMinutes === null) return a.name.localeCompare(b.name, "pt-BR");
+      if (aMinutes === null) return 1;
+      if (bMinutes === null) return -1;
+      if (aMinutes !== bMinutes) return aMinutes - bMinutes;
+
+      return a.name.localeCompare(b.name, "pt-BR");
     }
     if (sortBy === "name") {
       return a.name.localeCompare(b.name, "pt-BR");
@@ -84,7 +122,7 @@ function renderGrid() {
   grid.innerHTML = "";
 
   for (const bar of filteredBars) {
-    const distanceLabel = bar.distanceKm !== null ? `${bar.distanceKm} km` : "—";
+    const distanceLabel = getRankingLabel(bar);
     const slug = getSlug(bar);
     const detailHref = slug ? `buteco/${slug}/` : bar.comidaDeButecoUrl;
 

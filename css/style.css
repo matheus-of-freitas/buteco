@@ -368,13 +368,18 @@ h2 {
   top: 28px;
   right: 28px;
   z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px 10px;
   border-radius: 999px;
   background: var(--cor-9);
   color: var(--cor-4);
   font-size: 12px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.15;
+  max-width: 155px;
+  text-align: center;
 }
 
 .item .caption {
