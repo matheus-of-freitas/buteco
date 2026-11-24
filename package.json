@@ -1,11 +1,14 @@
 {
-  "name": "buteco",
+  "name": "rio-bar-guides",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "scrape": "node scripts/scrape.js",
-    "build": "node scripts/process.js",
-    "deploy": "aws s3 sync . s3://buteco-comida-di-buteco-2026 --exclude '*' --include 'index.html' --include 'css/*' --include 'js/*' --include 'assets/*' --include 'buteco/*' --include 'data/bars-final.json' --delete && aws cloudfront create-invalidation --distribution-id E36VCY0TY8MJKY --paths '/*'"
+    "scrape": "node botecar/scripts/scrape.js",
+    "build": "node botecar/scripts/process.js",
+    "deploy": "aws s3 sync botecar s3://buteco-comida-di-buteco-2026 --exclude '*' --include 'index.html' --include 'css/*' --include 'js/*' --include 'assets/*' --include 'bar/*' --include 'data/bars-final.json' --delete && aws cloudfront create-invalidation --distribution-id E36VCY0TY8MJKY --paths '/*'",
+    "scrape:buteco": "node comida-di-buteco/scripts/scrape.js",
+    "build:buteco": "node comida-di-buteco/scripts/process.js",
+    "deploy:buteco": "aws s3 sync comida-di-buteco s3://buteco-comida-di-buteco-2026 --exclude '*' --include 'index.html' --include 'css/*' --include 'js/*' --include 'assets/*' --include 'buteco/*' --include 'data/bars-final.json' --delete && aws cloudfront create-invalidation --distribution-id E36VCY0TY8MJKY --paths '/*'"
   },
   "keywords": [],
   "author": "",

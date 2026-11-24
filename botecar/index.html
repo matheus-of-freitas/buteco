@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botecar Rio 2026 — Botecos perto de casa</title>
+  <meta name="description" content="Guia pessoal do Festival Botecar Rio 2026: todos os botecos participantes ordenados pela rota real a partir de casa.">
+  <meta name="theme-color" content="#ed7623">
+  <link rel="icon" href="assets/fav.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header/footer also live in scripts/layout.js (detail pages); keep both in sync. -->
+  <header class="navbar">
+    <a class="logo" href="./"><img src="assets/fav.svg" alt="Festival Botecar" width="56" height="56"></a>
+    <nav class="menu">
+      <ul>
+        <li><a href="./" aria-current="page">Botecos perto de casa</a></li>
+        <li><a href="https://www.festivalbotecar.com.br/rio/" target="_blank" rel="noopener">Site oficial</a></li>
+      </ul>
+    </nav>
+    <span class="navbar-origem">rotas desde a Rua do Bispo, 295</span>
+  </header>
+
+  <section class="hero">
+    <img class="hero-deco hero-deco-beer" src="assets/beer.png" alt="" aria-hidden="true">
+    <img class="hero-deco hero-deco-music" src="assets/music.png" alt="" aria-hidden="true">
+    <div class="hero-grid">
+      <div class="hero-cell">
+        <span class="script-title">Rio de Janeiro</span>
+      </div>
+      <div class="hero-cell">
+        <span class="hero-label">Festival</span>
+        <img class="hero-badge" src="assets/botecar.png" alt="Botecar">
+      </div>
+      <div class="hero-cell">
+        <span class="script-title">2026</span>
+      </div>
+    </div>
+    <h1 class="hero-slogan">Os botecos mais<br>perto de casa</h1>
+  </section>
+
+  <main>
+    <section class="pratos-hero">
+      <h2 class="pratos-title">Botecos participantes</h2>
+
+      <div class="filtros-card">
+        <div class="filtro-busca">
+          <input type="text" id="filtro-busca" placeholder="Buscar por bar, prato ou bairro" autocomplete="off">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>
+        </div>
+        <div class="filtro-select">
+          <select id="filtro-ordem" aria-label="Ordenar">
+            <option value="distancia">Mais perto</option>
+            <option value="preco">Menor preço</option>
+            <option value="nome">A–Z</option>
+          </select>
+        </div>
+        <div class="filtro-select">
+          <select id="filtro-preco" aria-label="Preço">
+            <option value="">Preço</option>
+            <option value="ate30">Até R$30</option>
+            <option value="30-50">R$30 a R$50</option>
+            <option value="50-70">R$50 a R$70</option>
+            <option value="acima70">Acima de R$70</option>
+          </select>
+        </div>
+        <div class="filtro-select">
+          <select id="filtro-bairro" aria-label="Bairro">
+            <option value="">Bairro</option>
+          </select>
+        </div>
+        <button class="botao-limpar" type="button" id="btn-limpar">Limpar</button>
+      </div>
+
+      <p class="pratos-contador"><span id="contador-num">0</span> <span id="contador-texto">botecos encontrados</span></p>
+
+      <div class="pratos-grid" id="pratos-grid"></div>
+
+      <p class="pratos-vazio" id="pratos-vazio" hidden>Nenhum boteco encontrado para esse filtro.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-badge"><img src="assets/fav.svg" alt="Festival Botecar" width="90" height="90"></div>
+    <nav class="footer-menu">
+      <ul>
+        <li><a href="./" aria-current="page">Botecos perto de casa</a></li>
+        <li><a href="https://www.festivalbotecar.com.br/rio/pratos.html" target="_blank" rel="noopener">Pratos oficiais</a></li>
+        <li><a href="https://www.festivalbotecar.com.br/rio/mapa.html" target="_blank" rel="noopener">Mapa oficial</a></li>
+        <li><a href="https://www.instagram.com/festival_botecar/" target="_blank" rel="noopener">@festival_botecar</a></li>
+      </ul>
+    </nav>
+    <p class="footer-nota">Guia pessoal e não oficial, feito com os dados do Festival Botecar Rio 2026.<br>Rotas reais do Google Maps a partir da Rua do Bispo, 295 — Rio Comprido.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,945 @@
+{
+  "Aconchego Carioca::Rua Barão de Iguatemi, 245 - Praça da Bandeira, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Aconchego+Carioca/@-22.9129793,-43.2140706,17z/data=!3m1!4b1!4m6!3m5!1s0x997eff0000000001:0xf215a260911462d3!8m2!3d-22.9129793!4d-43.2140706!16s%2Fg%2F11gg674q6f?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Aconchego Carioca, Rua Barão de Iguatemi, 245 - Praça da Bandeira, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "20 min",
+      "minutes": 20,
+      "distanceLabel": "1,4 km",
+      "distanceKm": 1.4,
+      "routeSummary": "via R. Campos Sales"
+    },
+    "driving": {
+      "durationText": "12 min",
+      "minutes": 12,
+      "distanceLabel": "3,2 km",
+      "distanceKm": 3.2,
+      "routeSummary": "via R. Barão de Itapagipe"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Adega do Pimenta::Rua Almirante Alexandrino, 296 - Santa Teresa, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Adega+do+Pimenta/@-22.9208069,-43.1848755,17z/data=!3m1!4b1!4m6!3m5!1s0x997f7783a19b69:0xbc0adda240f48d3e!8m2!3d-22.9208069!4d-43.1848755!16s%2Fg%2F1tdz60w5?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Adega do Pimenta, Rua Almirante Alexandrino, 296 - Santa Teresa, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 7 min",
+      "minutes": 67,
+      "distanceLabel": "4,5 km",
+      "distanceKm": 4.5,
+      "routeSummary": "via Av. Salvador de Sá"
+    },
+    "driving": {
+      "durationText": "17 min",
+      "minutes": 17,
+      "distanceLabel": "4,6 km",
+      "distanceKm": 4.6,
+      "routeSummary": "via R. Itapiru"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Baixela::Av. Rainha Elisabeth, 85 - Copacabana, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Baixela+-+Bar+e+Restaurante/@-22.9850447,-43.1905691,17z/data=!3m1!4b1!4m6!3m5!1s0x9bd5def57d670d:0xfe2b65e78aae4d51!8m2!3d-22.9850447!4d-43.1905691!16s%2Fg%2F11k3z6xfh4?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Baixela - Bar e Restaurante, Av. Rainha Elisabeth, 85 - Copacabana, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "3 h 19 min",
+      "minutes": 199,
+      "distanceLabel": "14,1 km",
+      "distanceKm": 14.1,
+      "routeSummary": "via Av. Nossa Sra. de Copacabana"
+    },
+    "driving": {
+      "durationText": "35 min",
+      "minutes": 35,
+      "distanceLabel": "13,3 km",
+      "distanceKm": 13.3,
+      "routeSummary": "via Av. Atlântica"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Baltazar::Rua Ronald de Carvalho, 250 - Copacabana, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Baltazar/@-22.963897,-43.1773511,17z/data=!3m1!4b1!4m6!3m5!1s0x9bd5005be32f45:0xab0ee0b4796dd829!8m2!3d-22.963897!4d-43.1773511!16s%2Fg%2F11mrd0_8zl?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Baltazar, Rua Ronald de Carvalho, 250 - Copacabana, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 40 min",
+      "minutes": 160,
+      "distanceLabel": "11,3 km",
+      "distanceKm": 11.3,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "25 min",
+      "minutes": 25,
+      "distanceLabel": "10,2 km",
+      "distanceKm": 10.2,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar Botica::Rua Fernandes Guimarães, 30 - Botafogo, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+Botica/@-22.9544267,-43.1827478,17z/data=!3m1!4b1!4m6!3m5!1s0x997f13baa08565:0x791db45b2ea90a8d!8m2!3d-22.9544267!4d-43.1827478!16s%2Fg%2F11tg47rztc?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar Botica, Rua Fernandes Guimarães, 30 - Botafogo, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 17 min",
+      "minutes": 137,
+      "distanceLabel": "9,8 km",
+      "distanceKm": 9.8,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "23 min",
+      "minutes": 23,
+      "distanceLabel": "8,3 km",
+      "distanceKm": 8.3,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar Bracarense::Rua José Linhares, 85, loja B - Leblon, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bracarense/@-22.9838102,-43.2216594,17z/data=!3m1!4b1!4m6!3m5!1s0x9bd5adbc88c3c7:0xc0a7ed29adf5d841!8m2!3d-22.9838102!4d-43.2216594!16s%2Fg%2F1tj1t9p3?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bracarense, Rua José Linhares, 85, loja B - Leblon, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "3 h 38 min",
+      "minutes": 218,
+      "distanceLabel": "15,7 km",
+      "distanceKm": 15.7,
+      "routeSummary": "via R. Jardim Botânico"
+    },
+    "driving": {
+      "durationText": "36 min",
+      "minutes": 36,
+      "distanceLabel": "16,0 km",
+      "distanceKm": 16,
+      "routeSummary": "via Av. Epitácio Pessoa"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar Brasil::Av. Mem de Sá, 90 - Lapa, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Restaurante+Bar+Brasil/@-22.9129285,-43.181957,17z/data=!3m1!4b1!4m6!3m5!1s0x997f651e364487:0x6cc76bb735949d08!8m2!3d-22.9129285!4d-43.181957!16s%2Fg%2F1th88bkm?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Restaurante Bar Brasil, Av. Mem de Sá, 90 - Lapa, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "57 min",
+      "minutes": 57,
+      "distanceLabel": "4,0 km",
+      "distanceKm": 4,
+      "routeSummary": "via Av. Mem de Sá"
+    },
+    "driving": {
+      "durationText": "17 min",
+      "minutes": 17,
+      "distanceLabel": "5,0 km",
+      "distanceKm": 5,
+      "routeSummary": "via R. Itapiru"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar da Amendoeira::Rua Conde de Azambuja, 881 - Maria da Graça, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+da+Amendoeira/@-22.8854557,-43.2652081,17z/data=!3m1!4b1!4m6!3m5!1s0x997c3a6bf2721b:0x746c40466f02bb78!8m2!3d-22.8854557!4d-43.2652081!16s%2Fg%2F11c1q9kj9j?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar da Amendoeira, Rua Conde de Azambuja, 881 - Maria da Graça, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 52 min",
+      "minutes": 112,
+      "distanceLabel": "7,9 km",
+      "distanceKm": 7.9,
+      "routeSummary": "via R. São Francisco Xavier"
+    },
+    "driving": {
+      "durationText": "28 min",
+      "minutes": 28,
+      "distanceLabel": "10,8 km",
+      "distanceKm": 10.8,
+      "routeSummary": "via Av. Rei Pelé"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar da Frente Copacabana::Rua Almirante Gonçalves, 29B - Copacabana, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+da+Frente+Copacabana/@-22.9800363,-43.1906477,17z/data=!3m1!4b1!4m6!3m5!1s0x9bd543a9549fe5:0x4c2dfdfa95629eb8!8m2!3d-22.9800363!4d-43.1906477!16s%2Fg%2F11w_t6z9y1?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar da Frente Copacabana, Rua Almirante Gonçalves, 29B - Copacabana, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "3 h 12 min",
+      "minutes": 192,
+      "distanceLabel": "13,6 km",
+      "distanceKm": 13.6,
+      "routeSummary": "via Av. Nossa Sra. de Copacabana"
+    },
+    "driving": {
+      "durationText": "33 min",
+      "minutes": 33,
+      "distanceLabel": "14,3 km",
+      "distanceKm": 14.3,
+      "routeSummary": "via Túnel Antônio Rebouças"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar da Frente Praça da Bandeira::Rua Barão de Iguatemi, 388 - Praça da Bandeira, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+da+Frente/@-22.9134211,-43.2152443,17z/data=!3m1!4b1!4m6!3m5!1s0x997e5571700471:0xd8e15a6fa425db96!8m2!3d-22.9134211!4d-43.2152443!16s%2Fg%2F1v8gd7x4?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar da Frente, Rua Barão de Iguatemi, 388 - Praça da Bandeira, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "18 min",
+      "minutes": 18,
+      "distanceLabel": "1,3 km",
+      "distanceKm": 1.3,
+      "routeSummary": "via R. Campos Sales"
+    },
+    "driving": {
+      "durationText": "13 min",
+      "minutes": 13,
+      "distanceLabel": "3,2 km",
+      "distanceKm": 3.2,
+      "routeSummary": "via R. Barão de Itapagipe"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar da Gema::Rua Dona Zulmira, 134 - Maracanã, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+da+Gema/@-22.9174399,-43.2366069,17z/data=!3m1!4b1!4m6!3m5!1s0x997e0d9e61951f:0x979baf23f5814a72!8m2!3d-22.9174399!4d-43.2366069!16s%2Fg%2F1vrqbw50?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar da Gema, Rua Dona Zulmira, 134 - Maracanã, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "40 min",
+      "minutes": 40,
+      "distanceLabel": "2,9 km",
+      "distanceKm": 2.9,
+      "routeSummary": "via R. São Francisco Xavier"
+    },
+    "driving": {
+      "durationText": "18 min",
+      "minutes": 18,
+      "distanceLabel": "3,5 km",
+      "distanceKm": 3.5,
+      "routeSummary": "via Av. Heitor Beltrão"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar da Portuguesa::Rua Custódio Nunes, 155, loja D - Ramos, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+da+Portuguesa/@-22.8487948,-43.2613741,17z/data=!3m1!4b1!4m6!3m5!1s0x997be55ba396c7:0x3decc8e7633c5a2b!8m2!3d-22.8487948!4d-43.2613741!16s%2Fg%2F1ptynj6m0?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar da Portuguesa, Rua Custódio Nunes, 155, loja D - Ramos, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 34 min",
+      "minutes": 154,
+      "distanceLabel": "11,3 km",
+      "distanceKm": 11.3,
+      "routeSummary": "via R. Uranos"
+    },
+    "driving": {
+      "durationText": "32 min",
+      "minutes": 32,
+      "distanceLabel": "18,2 km",
+      "distanceKm": 18.2,
+      "routeSummary": "via Via Expressa Pres. João Goulart/Linha Vermelha"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar do Bode Cheiroso::Rua General Canabarro, 218 - Maracanã, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+do+Bode+Cheiroso/@-22.9146449,-43.2259171,17z/data=!3m1!4b1!4m6!3m5!1s0x997e5bce35aab5:0x5b482067dbba0d87!8m2!3d-22.9146449!4d-43.2259171!16s%2Fg%2F11f0kvp06g?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar do Bode Cheiroso, Rua General Canabarro, 218 - Maracanã, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "24 min",
+      "minutes": 24,
+      "distanceLabel": "1,8 km",
+      "distanceKm": 1.8,
+      "routeSummary": "via Rua Professor Gabizo"
+    },
+    "driving": {
+      "durationText": "12 min",
+      "minutes": 12,
+      "distanceLabel": "2,6 km",
+      "distanceKm": 2.6,
+      "routeSummary": "via R. Barão de Itapagipe e Rua Professor Gabizo"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar do Momo::Rua General Espírito Santo Cardoso, 50, loja A - Tijuca, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Bar%20do%20Momo%20Rua%20General%20Esp%C3%ADrito%20Santo%20Cardoso%2C%2050%2C%20loja%20A%20-%20Tijuca%2C%20Rio%20de%20Janeiro%2C%20RJ",
+    "destinationQuery": "Bar do Momo, Rua General Espírito Santo Cardoso, 50, loja A - Tijuca, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "51 min",
+      "minutes": 51,
+      "distanceLabel": "3,7 km",
+      "distanceKm": 3.7,
+      "routeSummary": "via Av. Heitor Beltrão"
+    },
+    "driving": {
+      "durationText": "21 min",
+      "minutes": 21,
+      "distanceLabel": "4,3 km",
+      "distanceKm": 4.3,
+      "routeSummary": "via Av. Heitor Beltrão"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar do Trotta::Rua Santa Luiza, 193, loja B - Maracanã, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+do+Trotta/@-22.916453,-43.23409,17z/data=!3m1!4b1!4m6!3m5!1s0x997f003a0ab417:0xf03fdb9420935d7b!8m2!3d-22.916453!4d-43.23409!16s%2Fg%2F11lcn2_7j7?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar do Trotta, Rua Santa Luiza, 193, loja B - Maracanã, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "36 min",
+      "minutes": 36,
+      "distanceLabel": "2,6 km",
+      "distanceKm": 2.6,
+      "routeSummary": "via R. São Francisco Xavier"
+    },
+    "driving": {
+      "durationText": "17 min",
+      "minutes": 17,
+      "distanceLabel": "5,6 km",
+      "distanceKm": 5.6,
+      "routeSummary": "via Av. Paulo de Frontin"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar Urca::Rua Cândido Gaffrée, 205 - Urca, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+Urca/@-22.9435993,-43.160218,17z/data=!3m1!4b1!4m6!3m5!1s0x9980397e4d3743:0x70da7d5f879b422e!8m2!3d-22.9435993!4d-43.160218!16s%2Fg%2F1thsbl1k?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar Urca, Rua Cândido Gaffrée, 205 - Urca, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 41 min",
+      "minutes": 161,
+      "distanceLabel": "11,6 km",
+      "distanceKm": 11.6,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "38 min",
+      "minutes": 38,
+      "distanceLabel": "11,9 km",
+      "distanceKm": 11.9,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar Kalango::Rua Arnaldo Quintela, 44 - Botafogo, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+Kalango/@-22.9548251,-43.1822502,17z/data=!3m1!4b1!4m6!3m5!1s0x997f59d918defd:0xcee813accfaf2c13!8m2!3d-22.9548251!4d-43.1822502!16s%2Fg%2F11rg9q6x_8?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar Kalango, Rua Arnaldo Quintela, 44 - Botafogo, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 18 min",
+      "minutes": 138,
+      "distanceLabel": "9,8 km",
+      "distanceKm": 9.8,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "25 min",
+      "minutes": 25,
+      "distanceLabel": "8,4 km",
+      "distanceKm": 8.4,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar Madrid::Rua Almirante Gavião, 11-F e G - Tijuca, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+Madrid/@-22.9187197,-43.2140803,17z/data=!3m1!4b1!4m6!3m5!1s0x997e53387c57f5:0xba1681b5cf223070!8m2!3d-22.9187197!4d-43.2140803!16s%2Fg%2F1tglp39q?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar Madrid, Rua Almirante Gavião, 11-F e G - Tijuca, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "6 min",
+      "minutes": 6,
+      "distanceLabel": "450 m",
+      "distanceKm": 0.45,
+      "routeSummary": "via R. do Bpo. e R. Haddock Lobo"
+    },
+    "driving": {
+      "durationText": "9 min",
+      "minutes": 9,
+      "distanceLabel": "2,0 km",
+      "distanceKm": 2,
+      "routeSummary": "via R. Barão de Itapagipe e R. Haddock Lobo"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar Saudade::Rua da Matriz, 54 - Botafogo, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+Saudade/@-22.9523436,-43.1922604,17z/data=!3m1!4b1!4m6!3m5!1s0x997fd17e44529f:0x3ca5042198382121!8m2!3d-22.9523436!4d-43.1922604!16s%2Fg%2F11wq7ymkg8?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Bar Saudade, Rua da Matriz, 54 - Botafogo, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 20 min",
+      "minutes": 140,
+      "distanceLabel": "10,1 km",
+      "distanceKm": 10.1,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "32 min",
+      "minutes": 32,
+      "distanceLabel": "9,3 km",
+      "distanceKm": 9.3,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Bar Velho Adonis::Rua São Luiz Gonzaga, 2156 - Benfica, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Velho+Adonis/@-22.8939713,-43.2390536,17z/data=!3m1!4b1!4m6!3m5!1s0x997f0c0b0f6d4b:0xdcbf22b2e86f9785!8m2!3d-22.8939713!4d-43.2390536!16s%2Fg%2F1pp2x69bn?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Velho Adonis, Rua São Luiz Gonzaga, 2156 - Benfica, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 14 min",
+      "minutes": 74,
+      "distanceLabel": "5,3 km",
+      "distanceKm": 5.3,
+      "routeSummary": "via R. São Francisco Xavier"
+    },
+    "driving": {
+      "durationText": "19 min",
+      "minutes": 19,
+      "distanceLabel": "7,5 km",
+      "distanceKm": 7.5,
+      "routeSummary": "via Av. Rei Pelé"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Barão Chopp e Petiscos::Rua Padre Januário, 83, loja B - Inhaúma, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/BAR%C3%83O+Chopp+%26+Petiscos/@-22.8734692,-43.2828738,17z/data=!3m1!4b1!4m6!3m5!1s0x997c5ce324a69b:0x7c0cad41181272b7!8m2!3d-22.8734692!4d-43.2828738!16s%2Fg%2F11fy4y9r3g?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "BARÃO Chopp & Petiscos, Rua Padre Januário, 83, loja B - Inhaúma, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 39 min",
+      "minutes": 159,
+      "distanceLabel": "11,1 km",
+      "distanceKm": 11.1,
+      "routeSummary": "via R. São Francisco Xavier"
+    },
+    "driving": {
+      "durationText": "28 min",
+      "minutes": 28,
+      "distanceLabel": "13,8 km",
+      "distanceKm": 13.8,
+      "routeSummary": "via Av. Brasil"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Boteco Princesa Leblon::Rua João Lira, 148 - Leblon, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Boteco+Princesa/@-22.9823055,-43.2225928,17z/data=!3m1!4b1!4m6!3m5!1s0x9bd599673e6ab5:0x452eb0597dbeb3b!8m2!3d-22.9823055!4d-43.2225928!16s%2Fg%2F11r_wcnh6n?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Boteco Princesa, Rua João Lira, 148 - Leblon, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "3 h 36 min",
+      "minutes": 216,
+      "distanceLabel": "15,5 km",
+      "distanceKm": 15.5,
+      "routeSummary": "via R. Jardim Botânico"
+    },
+    "driving": {
+      "durationText": "38 min",
+      "minutes": 38,
+      "distanceLabel": "15,9 km",
+      "distanceKm": 15.9,
+      "routeSummary": "via Av. Epitácio Pessoa"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Boteco Quinta Categoria::Rua Paulo Barreto, 25, loja C - Botafogo, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Boteco+Quinta+Categoria/@-22.9527919,-43.1872857,17z/data=!3m1!4b1!4m6!3m5!1s0x997f004e12b539:0xeef45f6b63c51fe7!8m2!3d-22.9527919!4d-43.1872857!16s%2Fg%2F11wr3nfcp4?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Boteco Quinta Categoria, Rua Paulo Barreto, 25, loja C - Botafogo, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 14 min",
+      "minutes": 134,
+      "distanceLabel": "9,6 km",
+      "distanceKm": 9.6,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "30 min",
+      "minutes": 30,
+      "distanceLabel": "8,6 km",
+      "distanceKm": 8.6,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Capiau Botequim::Rua Miguel Couto, 124-A (esquina do Largo de Santa Rita), Beco das Sardinhas - Centro, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Capiau+Botequim/@-22.9001303,-43.1811367,17z/data=!3m1!4b1!4m6!3m5!1s0x997f00246b288d:0xe6435f61d4431379!8m2!3d-22.9001303!4d-43.1811367!16s%2Fg%2F11y980jy8m?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Capiau Botequim, Rua Miguel Couto, 124-A (esquina do Largo de Santa Rita), Beco das Sardinhas - Centro, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 7 min",
+      "minutes": 67,
+      "distanceLabel": "4,8 km",
+      "distanceKm": 4.8,
+      "routeSummary": "via Av. Mal. Floriano"
+    },
+    "driving": {
+      "durationText": "21 min",
+      "minutes": 21,
+      "distanceLabel": "6,8 km",
+      "distanceKm": 6.8,
+      "routeSummary": "via Av. Pres. Vargas"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Casa Porto::Largo de São Francisco da Prainha, 4, sobrado - Saúde, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Casa+Porto/@-22.897731,-43.1843617,17z/data=!3m1!4b1!4m6!3m5!1s0x997f5b34968447:0xd2fe8257a157455e!8m2!3d-22.897731!4d-43.1843617!16s%2Fg%2F11btvlc74g?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Casa Porto, Largo de São Francisco da Prainha, 4, sobrado - Saúde, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 11 min",
+      "minutes": 71,
+      "distanceLabel": "5,1 km",
+      "distanceKm": 5.1,
+      "routeSummary": "via Av. Pres. Vargas"
+    },
+    "driving": {
+      "durationText": "22 min",
+      "minutes": 22,
+      "distanceLabel": "7,0 km",
+      "distanceKm": 7,
+      "routeSummary": "via Av. Paulo de Frontin"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Choperia Cotovelo::Rua da Carioca, 15 - Centro, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Choperia+Cotovelo+-+(Centro,+RJ)/@-22.9065876,-43.1793551,17z/data=!3m1!4b1!4m6!3m5!1s0x997f0034e12f47:0x6a3393de18932b2c!8m2!3d-22.9065876!4d-43.1793551!16s%2Fg%2F11xklkh4j4?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Choperia Cotovelo - (Centro, RJ), Rua da Carioca, 15 - Centro, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 2 min",
+      "minutes": 62,
+      "distanceLabel": "4,4 km",
+      "distanceKm": 4.4,
+      "routeSummary": "via Av. Salvador de Sá"
+    },
+    "driving": {
+      "durationText": "18 min",
+      "minutes": 18,
+      "distanceLabel": "5,4 km",
+      "distanceKm": 5.4,
+      "routeSummary": "via R. Itapiru"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Conserva Bar::Av. Prado Júnior, 281 - Copacabana, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/conserva+bar/@-22.9629397,-43.1756043,17z/data=!3m1!4b1!4m6!3m5!1s0x997f007e473b63:0x8c064e18829b4ed0!8m2!3d-22.9629397!4d-43.1756043!16s%2Fg%2F11zjfv9d28?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "conserva bar, Av. Prado Júnior, 281 - Copacabana, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 40 min",
+      "minutes": 160,
+      "distanceLabel": "11,3 km",
+      "distanceKm": 11.3,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "25 min",
+      "minutes": 25,
+      "distanceLabel": "10,0 km",
+      "distanceKm": 10,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Enchendo Linguiça::Av. Engenheiro Richard, 2 - Grajaú, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Enchendo+Ling%C3%BCi%C3%A7a/@-22.9204319,-43.2599447,17z/data=!3m1!4b1!4m6!3m5!1s0x997de667adee9f:0xcd7e5dfbaf126485!8m2!3d-22.9204319!4d-43.2599447!16s%2Fg%2F1tkrn00y?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Enchendo Lingüiça, Av. Engenheiro Richard, 2 - Grajaú, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 16 min",
+      "minutes": 76,
+      "distanceLabel": "5,4 km",
+      "distanceKm": 5.4,
+      "routeSummary": "via R. São Francisco Xavier e R. Teodoro da Silva"
+    },
+    "driving": {
+      "durationText": "26 min",
+      "minutes": 26,
+      "distanceLabel": "8,6 km",
+      "distanceKm": 8.6,
+      "routeSummary": "via Av. Paulo de Frontin"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Gracioso Bar::Rua Sacadura Cabral, 97 - Saúde, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Gracioso+(SAN+MARTIN)/@-22.8976621,-43.1851771,17z/data=!3m1!4b1!4m6!3m5!1s0x997f44c68c24cd:0xad0ccc35c4052f44!8m2!3d-22.8976621!4d-43.1851771!16s%2Fg%2F12hkvmlrb?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Gracioso (SAN MARTIN), Rua Sacadura Cabral, 97 - Saúde, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 9 min",
+      "minutes": 69,
+      "distanceLabel": "5,0 km",
+      "distanceKm": 5,
+      "routeSummary": "via Av. Pres. Vargas"
+    },
+    "driving": {
+      "durationText": "20 min",
+      "minutes": 20,
+      "distanceLabel": "6,9 km",
+      "distanceKm": 6.9,
+      "routeSummary": "via Av. Paulo de Frontin"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Jobá Boteco Carioca::Av. Ataulfo de Paiva, 1174, loja A - Leblon, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Job%C3%A1%20Boteco%20Carioca%20Av.%20Ataulfo%20de%20Paiva%2C%201174%2C%20loja%20A%20-%20Leblon%2C%20Rio%20de%20Janeiro%2C%20RJ",
+    "destinationQuery": "Jobá Boteco Carioca, Av. Ataulfo de Paiva, 1174, loja A - Leblon, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "3 h 41 min",
+      "minutes": 221,
+      "distanceLabel": "15,9 km",
+      "distanceKm": 15.9,
+      "routeSummary": "via R. Jardim Botânico"
+    },
+    "driving": {
+      "durationText": "42 min",
+      "minutes": 42,
+      "distanceLabel": "16,6 km",
+      "distanceKm": 16.6,
+      "routeSummary": "via Av. Epitácio Pessoa"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Jurubeba::Rua Real Grandeza, 196 - Botafogo, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Jurubeba+Bar/@-22.9554725,-43.1926581,17z/data=!3m1!4b1!4m6!3m5!1s0x997f00242f8a83:0x71e7993ab3f2942f!8m2!3d-22.9554725!4d-43.1926581!16s%2Fg%2F11lyjrtl2z?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Jurubeba Bar, Rua Real Grandeza, 196 - Botafogo, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 23 min",
+      "minutes": 143,
+      "distanceLabel": "10,3 km",
+      "distanceKm": 10.3,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "30 min",
+      "minutes": 30,
+      "distanceLabel": "9,0 km",
+      "distanceKm": 9,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Lá na Rosi::Praia do Zumbi, quiosque 0, em frente ao número 75 - Ilha do Governador, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/La+na+Rosi+bar/@-22.8205172,-43.174978,17z/data=!3m1!4b1!4m6!3m5!1s0x997809d21363e5:0x42ce6997fd22d78f!8m2!3d-22.8205172!4d-43.174978!16s%2Fg%2F11c5hhxyc3?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "La na Rosi bar, Praia do Zumbi, quiosque 0, em frente ao número 75 - Ilha do Governador, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "3 h 8 min",
+      "minutes": 188,
+      "distanceLabel": "21,0 km",
+      "distanceKm": 21,
+      "routeSummary": "via Cocotá - Praça XV/Praça XV - Cocotá"
+    },
+    "driving": {
+      "durationText": "39 min",
+      "minutes": 39,
+      "distanceLabel": "22,9 km",
+      "distanceKm": 22.9,
+      "routeSummary": "via Via Expressa Pres. João Goulart/Linha Vermelha e Estrada do Galeão"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Os Imortais::Rua Ronald de Carvalho, 147 e 154 (anexo) - Copacabana, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Os+Imortais/@-22.9648712,-43.1771236,17z/data=!3m1!4b1!4m6!3m5!1s0x9bd55574362351:0xc42b785d2b081869!8m2!3d-22.9648712!4d-43.1771236!16s%2Fg%2F1hg4wrxgj?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Os Imortais, Rua Ronald de Carvalho, 147 e 154 (anexo) - Copacabana, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 42 min",
+      "minutes": 162,
+      "distanceLabel": "11,4 km",
+      "distanceKm": 11.4,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "26 min",
+      "minutes": 26,
+      "distanceLabel": "10,3 km",
+      "distanceKm": 10.3,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Pescados na Brasa::Rua Vitor Meireles, 12 - Riachuelo, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Pescados+na+Brasa+Riachuelo/@-22.9027742,-43.258136,17z/data=!3m1!4b1!4m6!3m5!1s0x997df762fad48d:0xce206a86d111549d!8m2!3d-22.9027742!4d-43.258136!16s%2Fg%2F11hf4xvq5s?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Pescados na Brasa Riachuelo, Rua Vitor Meireles, 12 - Riachuelo, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 20 min",
+      "minutes": 80,
+      "distanceLabel": "5,8 km",
+      "distanceKm": 5.8,
+      "routeSummary": "via R. São Francisco Xavier"
+    },
+    "driving": {
+      "durationText": "27 min",
+      "minutes": 27,
+      "distanceLabel": "7,7 km",
+      "distanceKm": 7.7,
+      "routeSummary": "via R. Vinte e Quatro de Maio"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Petisqueira Martinho::Praia do Jequiá, 33, Ribeira - Ilha do Governador, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Petisqueira%20Martinho%20Praia%20do%20Jequi%C3%A1%2C%2033%2C%20Ribeira%20-%20Ilha%20do%20Governador%2C%20Rio%20de%20Janeiro%2C%20RJ",
+    "destinationQuery": "Petisqueira Martinho, Praia do Jequiá, 33, Ribeira - Ilha do Governador, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "3 h 21 min",
+      "minutes": 201,
+      "distanceLabel": "21,9 km",
+      "distanceKm": 21.9,
+      "routeSummary": "via Cocotá - Praça XV/Praça XV - Cocotá"
+    },
+    "driving": {
+      "durationText": "40 min",
+      "minutes": 40,
+      "distanceLabel": "23,5 km",
+      "distanceKm": 23.5,
+      "routeSummary": "via Via Expressa Pres. João Goulart/Linha Vermelha e Estrada do Galeão"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Porco Amigo Bar::Rua São Manuel, 43 - Botafogo, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Porco+Amigo+Bar/@-22.9538595,-43.1828826,17z/data=!3m1!4b1!4m6!3m5!1s0x997ff0d218ea11:0x6d45bfe61631bb27!8m2!3d-22.9538595!4d-43.1828826!16s%2Fg%2F11f717_jfx?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Porco Amigo Bar, Rua São Manuel, 43 - Botafogo, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 16 min",
+      "minutes": 136,
+      "distanceLabel": "9,7 km",
+      "distanceKm": 9.7,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "22 min",
+      "minutes": 22,
+      "distanceLabel": "8,3 km",
+      "distanceKm": 8.3,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Quitanda Gastronomia::Rua Andrade Pertence, 42D - Catete, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Quitanda+Gastronomia/@-22.9250817,-43.1781994,17z/data=!3m1!4b1!4m6!3m5!1s0x997f00700c4af1:0x55230fcb04e7c7!8m2!3d-22.9250817!4d-43.1781994!16s%2Fg%2F11vk4m1x6y?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Quitanda Gastronomia, Rua Andrade Pertence, 42D - Catete, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 22 min",
+      "minutes": 82,
+      "distanceLabel": "5,9 km",
+      "distanceKm": 5.9,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "24 min",
+      "minutes": 24,
+      "distanceLabel": "8,3 km",
+      "distanceKm": 8.3,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Real Chopp::Rua Barata Ribeiro, 319 - Copacabana, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/place/Real+Chopp/@-22.9672217,-43.1833334,17z/data=!3m1!4b1!4m6!3m5!1s0x9bd550bb939b0f:0x539e491ed3cc3045!8m2!3d-22.9672217!4d-43.1833334!16s%2Fg%2F1td1fn48?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D",
+    "destinationQuery": "Real Chopp, Rua Barata Ribeiro, 319 - Copacabana, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "2 h 48 min",
+      "minutes": 168,
+      "distanceLabel": "11,8 km",
+      "distanceKm": 11.8,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "27 min",
+      "minutes": 27,
+      "distanceLabel": "10,9 km",
+      "distanceKm": 10.9,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Suru Bafo::Rua da Lapa, 128 - Lapa, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Suru%20Bafo%20Rua%20da%20Lapa%2C%20128%20-%20Lapa%2C%20Rio%20de%20Janeiro%2C%20RJ",
+    "destinationQuery": "Suru Bafo, Rua da Lapa, 128 - Lapa, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 6 min",
+      "minutes": 66,
+      "distanceLabel": "4,7 km",
+      "distanceKm": 4.7,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "18 min",
+      "minutes": 18,
+      "distanceLabel": "5,4 km",
+      "distanceKm": 5.4,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Surubar::Rua da Lapa, 151 - Lapa, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Surubar%20Rua%20da%20Lapa%2C%20151%20-%20Lapa%2C%20Rio%20de%20Janeiro%2C%20RJ",
+    "destinationQuery": "Surubar, Rua da Lapa, 151 - Lapa, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 8 min",
+      "minutes": 68,
+      "distanceLabel": "4,9 km",
+      "distanceKm": 4.9,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "18 min",
+      "minutes": 18,
+      "distanceLabel": "5,4 km",
+      "distanceKm": 5.4,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  },
+  "Zuza Fish Bar::Rua Marquês de Abrantes, 1, loja A - Flamengo, Rio de Janeiro - RJ": {
+    "version": 1,
+    "homeOrigin": "Rua do Bispo, 295 - Rio Comprido, Rio de Janeiro - RJ, 20261-067, Brasil",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Zuza%20Fish%20Bar%20Rua%20Marqu%C3%AAs%20de%20Abrantes%2C%201%2C%20loja%20A%20-%20Flamengo%2C%20Rio%20de%20Janeiro%2C%20RJ",
+    "destinationQuery": "Zuza Fish Bar, Rua Marquês de Abrantes, 1, loja A - Flamengo, Rio de Janeiro, RJ",
+    "walking": {
+      "durationText": "1 h 35 min",
+      "minutes": 95,
+      "distanceLabel": "6,8 km",
+      "distanceKm": 6.8,
+      "routeSummary": "via R. Riachuelo"
+    },
+    "driving": {
+      "durationText": "19 min",
+      "minutes": 19,
+      "distanceLabel": "7,3 km",
+      "distanceKm": 7.3,
+      "routeSummary": "via Túnel Santa Bárbara"
+    },
+    "walkingError": "",
+    "drivingError": "",
+    "attempts": 1
+  }
+}
