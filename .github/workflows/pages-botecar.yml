@@ -1,0 +1,44 @@
+# Publica o site do Botecar (pasta botecar/) no GitHub Pages.
+# Os dados (data/bars-final.json e bar/*) são gerados localmente com `npm run build`
+# e commitados; o workflow só copia os arquivos estáticos.
+name: Deploy Botecar no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "botecar/**"
+      - ".github/workflows/pages-botecar.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Montar site estático
+        run: |
+          mkdir -p _site/data
+          cp -R botecar/index.html botecar/css botecar/js botecar/assets botecar/bar _site/
+          cp botecar/data/bars-final.json _site/data/
+          touch _site/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
